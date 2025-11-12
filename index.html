@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amazon Style Product Card</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background: #f3f3f3;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .card {
+      display: flex;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      width: 800px;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: scale(1.02);
+    }
+
+    .image-section {
+      width: 45%;
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #fafafa;
+    }
+
+    .main-img {
+      width: 100%;
+      height: 300px;
+      object-fit: contain;
+      margin-bottom: 10px;
+    }
+
+    .related-images {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .related-images img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border: 2px solid transparent;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: border 0.2s;
+    }
+
+    .related-images img:hover {
+      border: 2px solid #FFA41C;
+    }
+
+    .product-details {
+      padding: 25px;
+      width: 55%;
+    }
+
+    .product-title {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #222;
+      margin-bottom: 8px;
+    }
+
+    .product-desc {
+      font-size: 0.9rem;
+      color: #555;
+      margin-bottom: 12px;
+    }
+
+    .rating {
+      color: #f5a623;
+      margin-bottom: 10px;
+    }
+
+    .price {
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #B12704;
+      margin-bottom: 15px;
+    }
+
+    .quantity-control {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .quantity-control button {
+      width: 30px;
+      height: 30px;
+      font-size: 1.2rem;
+      background: #FFD814;
+      border: 1px solid #fcd200;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .quantity-control button:hover {
+      background: #F7CA00;
+    }
+
+    #quantity {
+      font-size: 1rem;
+      color: #111;
+      min-width: 20px;
+      text-align: center;
+      display: inline-block;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: all 0.2s ease;
+    }
+
+    .add-cart {
+      background: #FFD814;
+      border: 1px solid #fcd200;
+    }
+
+    .add-cart:hover {
+      background: #F7CA00;
+    }
+
+    .buy-now {
+      background: #FFA41C;
+      border: 1px solid #ff9900;
+      color: #111;
+    }
+
+    .buy-now:hover {
+      background: #FA8900;
+    }
+
+    @media (max-width: 700px) {
+      body {
+        height: auto;
+        padding: 20px;
+      }
+      .card {
+        flex-direction: column;
+        width: 100%;
+      }
+      .image-section, .product-details {
+        width: 100%;
+      }
+      .main-img {
+        height: 250px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="image-section">
+      <!-- Main product image -->
+      <img src="C:\Users\santo\Downloads\still-life-wireless-cyberpunk-headphones.jpg" 
+           alt="Wireless Headphones" class="main-img" id="mainProductImage">
+
+      <!-- Related images -->
+      <div class="related-images">
+        <img src="C:\Users\santo\Downloads\headphones-with-minimalist-monochrome-background.jpg" alt="image1" onclick="changeImage(this)">
+        <img src="C:\Users\santo\Downloads\headphones-audio-listen.jpg" alt="image2" onclick="changeImage(this)">
+        <img src="" alt="image3" onclick="changeImage(this)">
+        
+      </div>
+    </div>
+
+    <div class="product-details">
+      <h2 class="product-title">Wireless Bluetooth Headphones</h2>
+      <p class="product-desc">Premium sound quality, noise cancellation, soft ear cushions, and up to 20 hours of battery life for immersive audio experience.</p>
+
+      <div class="rating">⭐⭐⭐⭐☆ (4.3/5)</div>
+
+      <div class="price">$59.99</div>
+
+      <div class="quantity-control">
+        <button id="decrement">-</button>
+        <span id="quantity">1</span>
+        <button id="increment">+</button>
+      </div>
+
+      <div class="buttons">
+        <button class="btn add-cart">Add to Cart 🛒</button>
+        <button class="btn buy-now">Buy Now ⚡</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Quantity control
+    let quantity = 1;
+    const quantityDisplay = document.getElementById('quantity');
+    const incrementBtn = document.getElementById('increment');
+    const decrementBtn = document.getElementById('decrement');
+
+    incrementBtn.addEventListener('click', () => {
+      quantity++;
+      quantityDisplay.textContent = quantity;
+    });
+
+    decrementBtn.addEventListener('click', () => {
+      if (quantity > 1) {
+        quantity--;
+        quantityDisplay.textContent = quantity;
+      }
+    });
+
+    // Change main image when clicking on related image
+    function changeImage(imageElement) {
+      const mainImage = document.getElementById('mainProductImage');
+      mainImage.src = imageElement.src;
+    }
+  </script>
+
+</body>
+</html>
