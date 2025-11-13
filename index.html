@@ -166,7 +166,7 @@
       background: #FA8900;
     }
 
-    @media (max-width: 700px) {
+     (max-width: 700px) {
       body {
         height: auto;
         padding: 20px;
@@ -188,15 +188,15 @@
 
   <div class="card">
     <div class="image-section">
-      <!-- Main product image -->
+      
       <img src="C:\Users\santo\Downloads\still-life-wireless-cyberpunk-headphones.jpg" 
            alt="Wireless Headphones" class="main-img" id="mainProductImage">
 
-      <!-- Related images -->
+      
       <div class="related-images">
         <img src="C:\Users\santo\Downloads\headphones-with-minimalist-monochrome-background.jpg" alt="image1" onclick="changeImage(this)">
         <img src="C:\Users\santo\Downloads\headphones-audio-listen.jpg" alt="image2" onclick="changeImage(this)">
-        <img src="C:\Users\santo\AppData\Local\Temp\c8479af4-8ef9-4d46-8a37-3320fa7a7850_headphones-realistic-set.zip.850\26322.jpg" alt="image3" onclick="changeImage(this)">
+        <img src="C:\Users\santo\Downloads\earphones-with-case-surrounded-by-nature-scene.jpg" alt="image3" onclick="changeImage(this)">
         
       </div>
     </div>
@@ -223,7 +223,7 @@
   </div>
 
   <script>
-    // Quantity control
+    
     let quantity = 1;
     const quantityDisplay = document.getElementById('quantity');
     const incrementBtn = document.getElementById('increment');
@@ -241,7 +241,7 @@
       }
     });
 
-    // Change main image when clicking on related image
+    
     function changeImage(imageElement) {
       const mainImage = document.getElementById('mainProductImage');
       mainImage.src = imageElement.src;
